@@ -16,3 +16,7 @@ python		rh	sclorg	s2i-python-container	rhscl-images-s2i-base-rh-build			centos
 perl		rh	sclorg	s2i-perl-container	rhscl-images-s2i-base-rh-build			centos
 nodejs		rh	sclorg	s2i-nodejs-container	rhscl-images-s2i-base-rh-build			centos
 ruby		rh	sclorg	s2i-ruby-container	rhscl-images-s2i-base-rh-build			centos
+mongodb		mskalick	sclorg	mongodb-container	rhscl-images-centos_centos7-mskalick-trigger	mskalick
+ror		mskalick	sclorg	ror-container		rhscl-images-centos_centos7-mskalick-trigger	mskalick
+s2i-base	mskalick	sclorg	s2i-base-container	rhscl-images-centos_centos7-mskalick-trigger	mskalick
+httpd		mskalick	sclorg	httpd-container		rhscl-images-s2i-base-mskalick-build		mskalick

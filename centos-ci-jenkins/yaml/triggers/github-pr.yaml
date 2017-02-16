@@ -13,3 +13,4 @@
           build-desc-template: "Checks whether PR does not break anything"
           trigger-phrase: '.*\[test\].*'
           status-context: '{context}'
+          auth-id: '5164bc59-b656-4ddc-add2-91ce706a106d'

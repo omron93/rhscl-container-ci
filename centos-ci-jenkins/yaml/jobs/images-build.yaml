@@ -69,4 +69,4 @@
             done
     publishers:
         - email:
-            recipients: 'mskalick@redhat.com hhorak@redhat.com'
+            recipients: 'mskalick@redhat.com'

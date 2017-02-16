@@ -1,0 +1,12 @@
+- project:
+    name: s2i-base-mskalick
+    gitproject: s2i-base-container
+    gituser: sclorg
+    release: 7
+    blocks: 'rhscl-images-s2i-base*'
+    jobs:
+        - 'rhscl-images-{name}':
+            context: 'RHEL7'
+        - 'rhscl-images-{name}-build':
+            project_trigger: rhscl-images-centos_centos7-mskalick-trigger
+            hub_namespace: mskalick

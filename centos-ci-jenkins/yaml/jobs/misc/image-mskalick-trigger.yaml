@@ -1,0 +1,4 @@
+- project:
+    name: centos_centos7-mskalick
+    jobs:
+        - 'rhscl-images-{name}-trigger'

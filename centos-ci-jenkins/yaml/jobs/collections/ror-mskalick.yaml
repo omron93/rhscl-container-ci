@@ -1,0 +1,12 @@
+- project:
+    name: ror-mskalick
+    gitproject: ror-container
+    gituser: sclorg
+    release: 7
+    blocks: 'rhscl-images-ror*'
+    jobs:
+        - 'rhscl-images-{name}':
+            context: 'RHEL7'
+        - 'rhscl-images-{name}-build':
+            project_trigger: rhscl-images-centos_centos7-mskalick-trigger
+            hub_namespace: mskalick

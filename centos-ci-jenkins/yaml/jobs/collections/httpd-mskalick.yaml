@@ -1,0 +1,12 @@
+- project:
+    name: httpd-mskalick
+    gitproject: httpd-container
+    gituser: sclorg
+    release: 7
+    blocks: 'rhscl-images-httpd*'
+    jobs:
+        - 'rhscl-images-{name}':
+            context: 'RHEL7'
+        - 'rhscl-images-{name}-build':
+            project_trigger: rhscl-images-s2i-base-mskalick-build
+            hub_namespace: mskalick
