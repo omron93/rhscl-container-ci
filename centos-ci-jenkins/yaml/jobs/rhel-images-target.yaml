@@ -1,0 +1,37 @@
+# parameters:
+#   name: software collection name with namespace, e.g. httpd24-rh
+#   release: version of RHEL/CentOS to test, e.g. 6
+#   gituser: name of github user or organization
+#   gitproject: name of a repository to test
+#   target: make target to run
+- job-template:
+    name: 'rhscl-images-{name}-{target}'
+    node: slave_rhel7_root
+    scm:
+        - images-pull-test:
+            gituser: '{gituser}'
+            gitproject: '{gitproject}'
+    triggers:
+        - github-pr-target:
+            context: 'RHEL7 make {target}'
+            trigger-phrase: '.*\[{target}\].*'
+    builders:
+        - add_dependencies_remote:
+            name: '{name}'
+        - shell: |
+            #!/bin/bash
+            set -ex
+
+            git submodule update --init
+
+            # Run base image tests and tests of each dependent image
+            make {target} SKIP_SQUASH=1 UPDATE_BASE=1 TAG_ON_SUCCESS=true TARGET=rhel7
+            if [[ "{name}" == "s2i-base-*" ]]; then
+              # Use same naming format for s2i-base as other images use
+              docker tag openshift/base-centos{release} centos/{name}-centos{release}
+            fi
+            for remote in $(git remote | grep test_); do
+              echo "Testing ${{remote#test_}}/master"
+              git checkout $remote/master
+              make {target} SKIP_SQUASH=1 TARGET=rhel7
+            done
