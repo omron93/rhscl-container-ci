@@ -9,6 +9,12 @@
 - job-template:
     name: 'rhscl-images-{name}-build'
     node: slave_rhel7_root
+    wrappers:
+      - timestamps
+      - credentials-binding:
+          - text:
+              variable: "GITHUB_TOKEN"
+              credential-id: 'f12f925d-cbc0-47fd-ab22-47f8d63ed6c0'
     scm:
         - images-build:
             gituser: '{gituser}'
